@@ -19,7 +19,6 @@ loginForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const email = emailInput.value.trim().toLowerCase();
 
-    // เช็กว่าลงท้ายด้วย @mail.dusit.ac.th
     if (email.endsWith('@mail.dusit.ac.th')) {
         loginMsg.innerText = '';
         userEmailSpan.innerText = email;
@@ -38,26 +37,17 @@ logoutBtn.addEventListener('click', () => {
     emailInput.value = '';
 });
 
-// 2. ระบบเพิ่มปาร์ตี้เดินทาง
+// 2. ระบบเพิ่มปาร์ตี้เดินทาง (ดึงค่าจากช่องพิมพ์โดยตรง)
 const partyForm = document.getElementById('party-form');
 
 partyForm.addEventListener('submit', (e) => {
     e.preventDefault();
     
-    // ดึงค่าจากช่องพิมพ์เอง ถ้าไม่มีให้ใช้ค่าจากตัวเลือก select
-    const customOrigin = document.getElementById('origin-custom').value.trim();
-    const selectOrigin = document.getElementById('origin').value;
-    const finalOrigin = customOrigin !== "" ? customOrigin : selectOrigin;
-
-    const customDest = document.getElementById('destination-custom').value.trim();
-    const selectDest = document.getElementById('destination').value;
-    const finalDest = customDest !== "" ? customDest : selectDest;
-
     const newParty = {
         id: Date.now(),
         host: userEmailSpan.innerText,
-        origin: finalOrigin,
-        destination: finalDest,
+        origin: document.getElementById('origin').value.trim(),
+        destination: document.getElementById('destination').value.trim(),
         time: document.getElementById('departure-time').value,
         seats: parseInt(document.getElementById('seats').value)
     };
