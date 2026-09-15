@@ -11,7 +11,7 @@ const logoutBtn = document.getElementById('logout-btn');
 // ข้อมูลจำลองรายการปาร์ตี้
 let parties = [
     { id: 1, host: 'student1@mail.dusit.ac.th', origin: 'หน้าตึก 11', destination: 'MRT บางพลัด', time: '16:30', seats: 2 },
-    { id: 2, host: 'student2@mail.dusit.ac.th', origin: 'ฝั่งศูนย์อาหาร', destination: 'BTS อนุสาวรีย์ชัยฯ', time: '17:00', seats: 1 }
+    { id: 2, host: 'student2@mail.dusit.ac.th', origin: 'ฝั่งศูนย์อาหารสวนดุสิต', destination: 'BTS อนุสาวรีย์ชัยฯ', time: '17:00', seats: 1 }
 ];
 
 // 1. ระบบยืนยันอีเมลมหาวิทยาลัย
@@ -19,7 +19,7 @@ loginForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const email = emailInput.value.trim().toLowerCase();
 
-    // เช็กว่าลงท้ายด้วย @mail.dusit.ac.th หรือไม่
+    // เช็กว่าลงท้ายด้วย @mail.dusit.ac.th
     if (email.endsWith('@mail.dusit.ac.th')) {
         loginMsg.innerText = '';
         userEmailSpan.innerText = email;
@@ -64,8 +64,6 @@ partyForm.addEventListener('submit', (e) => {
 
     parties.unshift(newParty);
     renderParties();
-    
-    // ล้างค่าฟอร์ม
     partyForm.reset();
     alert('สร้างปาร์ตี้เรียบร้อยแล้ว!');
 });
