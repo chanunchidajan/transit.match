@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dusit Transit-Match - ระบบหารค่ารถเด็กสวนดุสิต</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Dusit Transit-Match</h1>
+            <p>ระบบจับคู่หารค่ารถออกจากซอย ม.สวนดุสิต</p>
+        </header>
+
+        <!-- ส่วนล็อกอินด้วยอีเมลมหาวิทยาลัย -->
+        <section id="login-section" class="card">
+            <h2>เข้าสู่ระบบ (สำหรับ นศ. สวนดุสิต)</h2>
+            <form id="login-form">
+                <input type="email" id="email-input" placeholder="example@mail.dusit.ac.th" required>
+                <button type="submit">เข้าสู่ระบบ</button>
+            </form>
+            <p id="login-msg" class="error-msg"></p>
+        </section>
+
+        <!-- ส่วนระบบหลัก (จะซ่อนไว้จนกว่าจะล็อกอินผ่าน) -->
+        <main id="main-section" class="hidden">
+            <div class="user-bar">
+                <span>ยินดีต้อนรับ: <strong id="user-email"></strong></span>
+                <button id="logout-btn" class="btn-secondary">ออกจากระบบ</button>
+            </div>
+
+            <!-- ฟอร์มสร้างปาร์ตี้เดินทาง -->
+            <section class="card">
+                <h3>สร้างปาร์ตี้เดินทางใหม่</h3>
+                <form id="party-form">
+                    <div class="form-group">
+                        <label>จุดเริ่มต้น:</label>
+                        <select id="origin" required>
+                            <option value="หน้าตึก 11">หน้าตึก 11</option>
+                            <option value="หน้าประตูใหญ่ (นครราชสีมา)">หน้าประตูใหญ่ (นครราชสีมา)</option>
+                            <option value="ฝั่งศูนย์อาหารสวนดุสิต">ฝั่งศูนย์อาหารสวนดุสิต</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>จุดหมายปลายทาง:</label>
+                        <select id="destination" required>
+                            <option value="MRT บางพลัด">MRT บางพลัด</option>
+                            <option value="MRT สิรินธร">MRT สิรินธร</option>
+                            <option value="BTS อนุสาวรีย์ชัยฯ">BTS อนุสาวรีย์ชัยฯ</option>
+                            <option value="สายใต้ใหม่">สายใต้ใหม่</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>เวลาล้อหมุน:</label>
+                        <input type="time" id="departure-time" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>รับเพิ่มอีก (คน):</label>
+                        <input type="number" id="seats" min="1" max="4" value="3" required>
+                    </div>
+
+                    <button type="submit" class="btn-success">สร้างปาร์ตี้</button>
+                </form>
+            </section>
+
+            <!-- รายการปาร์ตี้ที่เปิดรับอยู่ -->
+            <section class="card">
+                <h3>ปาร์ตี้ที่กำลังหาคนหารค่ารถ</h3>
+                <div id="party-list">
+                    <!-- รายการปาร์ตี้จะถูกสร้างด้วย JS -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
