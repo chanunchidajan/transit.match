@@ -44,17 +44,28 @@ const partyForm = document.getElementById('party-form');
 partyForm.addEventListener('submit', (e) => {
     e.preventDefault();
     
+    // ดึงค่าจากช่องพิมพ์เอง ถ้าไม่มีให้ใช้ค่าจากตัวเลือก select
+    const customOrigin = document.getElementById('origin-custom').value.trim();
+    const selectOrigin = document.getElementById('origin').value;
+    const finalOrigin = customOrigin !== "" ? customOrigin : selectOrigin;
+
+    const customDest = document.getElementById('destination-custom').value.trim();
+    const selectDest = document.getElementById('destination').value;
+    const finalDest = customDest !== "" ? customDest : selectDest;
+
     const newParty = {
         id: Date.now(),
         host: userEmailSpan.innerText,
-        origin: document.getElementById('origin').value,
-        destination: document.getElementById('destination').value,
+        origin: finalOrigin,
+        destination: finalDest,
         time: document.getElementById('departure-time').value,
         seats: parseInt(document.getElementById('seats').value)
     };
 
     parties.unshift(newParty);
     renderParties();
+    
+    // ล้างค่าฟอร์ม
     partyForm.reset();
     alert('สร้างปาร์ตี้เรียบร้อยแล้ว!');
 });
